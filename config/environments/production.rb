@@ -63,6 +63,9 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "r20220516_Eventbrite_V2_#{Rails.env}"
 
+  # Mailer
+  config.action_mailer.default_url_options = { :host => 'immense-reaches-87063.herokuapp.com' }
+
   config.action_mailer.perform_caching = false
 
   # Ignore bad email addresses and do not raise email delivery errors.
