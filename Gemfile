@@ -63,3 +63,4 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 # Other gem
 gem "devise"
 gem 'dotenv-rails'
+gem 'faker'
