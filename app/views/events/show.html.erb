@@ -36,8 +36,9 @@
                 <p> Description : <%= @event.description %></p>
                 <p> Prix : <%= @event.price %>€</p>
                 <p> Date de début : <%= @event.start_date %></p>
-                <p> nb inscrit : nb inscrit event</p>
-                <p> Date de fin : date de fin</p>
+                <p> nb inscrit : <%= @event.attendances.length %></p>
+                <p> Durée : <%= @event.duration %> minutes</p>
+                <p> fin de l'évent : <%= @event.end_date %></p>
                 <div class="lign"> <hr> </div>
                 <div class="row ">
                 </div>

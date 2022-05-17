@@ -21,4 +21,11 @@ class Event < ApplicationRecord
     errors.add(:duration, "duration must be a multiple of 5") unless valid
   end
 
+def end_date
+  self.start_date + self.duration.to_i*60 
+  
+end
+
+
+
 end

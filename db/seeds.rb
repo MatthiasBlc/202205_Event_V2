@@ -25,6 +25,9 @@ end
 end
 
 
-10.times do 
-  Attendance.create(user_id: User.all.sample.id, event_id: Event.all.sample.id)
+Event.all.each do |event|
+  random = rand(0..10)
+  random.times do
+    Attendance.create(user_id: User.all.sample.id, event: event)
+  end
 end
