@@ -31,10 +31,27 @@
               <h2 class="text-center">Plus d'informations sur cet utilisateur</h2>
               <h3>Description : <%= @user.description %></h3>
               <h3><span class="fas fa-envelope-open"></span><%= @user.email %></h3>
+              <%= link_to "Modifier les informations de connexion", edit_user_registration_path, class: "btn btn-info" %>
             </div>
           </div>
         </div>
       </div>
+
+
+
+      <% @events.each do |event| %>
+        <% if event.admin_id == current_user.id%>
+          <div class="row d-flex justify-content-end">
+            <div class="col-sm-9 d-flex">
+              <div class="well m-5">
+                <b><%= event.title %></b>
+                <p class="text-decoration-none"><%= link_to "Voir l'Event", event_path(event), class: "btn btn-info" %></p>
+              </div>
+            </div>
+          </div>
+        <% else %>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
