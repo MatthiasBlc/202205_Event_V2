@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  # get 'events_controller/index'
+  # get 'events/index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :events_controller
+  root to: 'events#index'
+
+  resources :events
+
 end
