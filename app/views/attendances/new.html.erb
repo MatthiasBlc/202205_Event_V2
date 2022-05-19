@@ -1,2 +1,21 @@
-<h1>Attendances#new</h1>
-<p>Find me in app/views/attendances/new.html.erb</p>
+<h1>Bienvenue sur ma page de paiement !</h1>
+<p>Vous avez choisi l'event <%= @event.title %>.</p>
+<%= form_tag url_for(action: 'create'), method: "post" do %>
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
+    <% end %>
+    <label class="amount">
+      <span>Son prix est de : <%= @event.price %> €</span>
+    </label>
+  </article>
+  <br/>
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+  data-description="Achat d'un produit"
+  data-amount=<%= @stripe_amount.to_i * 100 %>
+  data-currency="eur"
+  data-locale="auto"></script>
+<% end %>

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get 'attendances/new'
-  get 'attendances/index'
+
   root to: 'events#index'
 
   devise_for :users
@@ -12,4 +11,6 @@ Rails.application.routes.draw do
   resources :events do
     resources :attendances
   end
+
+
 end
