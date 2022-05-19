@@ -1,0 +1,31 @@
+<%= form_for @event do |f|%>
+  <div class='form-group'>
+    <label> Titre </label>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <label> Description </label>
+    <%= f.text_area :description, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <label> Date de l'event </label>
+    <%= f.datetime_field :start_date, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <label> Durée </label>
+    <%= f.text_field :duration, class: 'form-control', type:'number'%>
+  </div>
+  <div class='form-group'>
+    <label> Prix </label>
+    <%= f.text_field :price, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <label> Lieu </label>
+    <%= f.text_field :location, class: 'form-control' %>
+  </div>
+  <div class='form-group'>
+    <%= submit_tag "Edit Event" %>  </div>
+  <div class="col-sm">
+    <%= button_to "Supprimer l'Event", event_path(@event), method: :delete, class: "btn btn-danger"%>
+  </div>
+<% end %>

@@ -1,11 +1,24 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create]
+  before_action :admin_user, only: %i[new edit create update destroy]
+  before_action :authenticate_user!, only: %i[new edit create update destroy]
 
   def index
     @events = Event.all
   end
 
-  def secret; end
+  def edit
+    @event = Event.find(params[:id])
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    if @event.update(params_event)
+      redirect_to event_path(params[:id])
+    else
+      flash.now[:alert] = @event.errors.full_messages
+      render :edit
+    end
+  end
 
   def new
     @event = Event.create
@@ -13,9 +26,17 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
-    
   end
 
+  def destroy
+    @event = Event.find(params[:id])
+    @attendances = Attendance.all
+    @attendances.each do |attendance|
+      attendance.destroy if attendance.event_id == @event.id
+    end
+    @event.destroy
+    redirect_to events_path
+  end
 
   def create
     @event = Event.new(admin_id: current_user.id,
@@ -35,6 +56,20 @@ class EventsController < ApplicationController
     else
       flash.now[:alert] = @event.errors.full_messages
       render 'new'
+    end
+  end
+
+  private
+
+  def admin_user
+    puts '$'*90
+    puts params.inspect
+    puts '$'*90
+
+    @event = Event.find(params[:id])
+    unless current_user.id == @event.admin_id
+      flash[:danger] = "Vous n'êtes pas autorisé à venir dans cette zone"
+      redirect_to event_path
     end
   end
 end
