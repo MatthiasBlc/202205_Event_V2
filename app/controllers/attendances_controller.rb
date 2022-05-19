@@ -2,7 +2,8 @@ class AttendancesController < ApplicationController
   before_action :authenticate_user!, only: %i[new index]
 
   def index
-   
+    @event = Event.find(params[:event_id])
+    @attendances = Attendance.all
   end
 
   def new

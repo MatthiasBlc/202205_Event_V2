@@ -1,2 +1,23 @@
-<h1>Attendances#index</h1>
-<p>Find me in app/views/attendances/index.html.erb</p>
+<div class="container marketing">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default text-left">
+        <div class="panel-body">
+          <h1 class="text-center text-info">Liste des invités</h1>
+        </div>
+      </div>
+    </div>
+    <p class="text-decoration-none"><%= link_to "Modifier l'Event",  edit_event_path(@event.id), class: "btn btn-info" %></p>
+    <div class="row ml-5">
+      <% @attendances.each do |attendance| %>
+        <%if attendance.event_id == @event.id %>
+          <div class="col-lg-3 well m-3">
+            <img src="https://source.unsplash.com/200x200/?portrait?sig=<%=rand(1..100)%>" 
+                alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+            <h4><%= attendance.user.first_name %></h4>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
