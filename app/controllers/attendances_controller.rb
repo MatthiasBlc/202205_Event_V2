@@ -31,10 +31,16 @@ class AttendancesController < ApplicationController
     end
 
     @attendance = Attendance.new(stripe_customer_id: customer.id,
-      user_id: @user.id,
-      event_id: @event.id 
+      user: @user,
+      event: @event
     )
 
+    if @attendance.save
+      redirect_to event_path(params[:event_id])
+    else 
+      flash.now[:alert] = @attendance.errors.full_messages
+      render 'new'
+    end
 
   end
 
