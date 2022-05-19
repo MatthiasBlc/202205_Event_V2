@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :admin_user, only: %i[new edit create update destroy]
+  before_action :admin_user, only: %i[edit update destroy]
   before_action :authenticate_user!, only: %i[new edit create update destroy]
 
   def index
@@ -62,10 +62,6 @@ class EventsController < ApplicationController
   private
 
   def admin_user
-    puts '$'*90
-    puts params.inspect
-    puts '$'*90
-
     @event = Event.find(params[:id])
     unless current_user.id == @event.admin_id
       flash[:danger] = "Vous n'êtes pas autorisé à venir dans cette zone"
